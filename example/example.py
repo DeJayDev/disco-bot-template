@@ -8,18 +8,10 @@ class ExamplePlugin(Plugin):
         # Let's just keep a note on this one.
         print('{} joined the server!'.format(event.member.name))
 
-    # You normally do not need to listen to this.
     @Plugin.listen('MessageCreate')
     def on_message_create(self, event):
-        # If the message is from a bot, ignore it.
-        if event.author.bot:
-            return
-
-        # If the first letter of the message is d, repeat the message back to the user.
-        # Without the d.
-        if event.content.lower().startswith('d'):
-            # Remove the first letter, and respond.
-            event.msg.reply(event.content[1:])
+        # All of Discord's events can be listened too and handled easily
+        self.log.info('{}: {}'.format(event.author, event.content))
 
     @Plugin.command('auditme')
     def on_auditme(self, event):
@@ -63,11 +55,6 @@ class ExamplePlugin(Plugin):
         # Generally all the functionality you need to interact with is contained
         #  within the event object passed to command and event handlers.
         event.msg.reply('Pong!')
-
-    @Plugin.listen('MessageCreate')
-    def on_message_create(self, event):
-        # All of Discord's events can be listened too and handled easily
-        self.log.info('{}: {}'.format(event.author, event.content))
 
     @Plugin.command('echo', '<content:str...>')
     def on_echo_command(self, event, content):
