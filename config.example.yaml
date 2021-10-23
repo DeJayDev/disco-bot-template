@@ -1,0 +1,8 @@
+token: ""
+intents: 641 # https://ziad87.net/intents
+
+bot:
+  command_prefixes: ["d"]
+  plugins:
+    - example.plugin
+    - example.plugin_two
